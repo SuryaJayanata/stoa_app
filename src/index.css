@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-utama: #202411;
+    --primary-accent: #BEEE02;
+    --secondary-accent: #D0E08B;
+    --high-contrast: #FFFFFF;
+  }
+
+  body {
+    background-color: #000000;
+    color: var(--high-contrast);
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  * {
+    font-weight: 500;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
