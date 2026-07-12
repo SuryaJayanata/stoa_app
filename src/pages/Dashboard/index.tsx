@@ -1,7 +1,7 @@
 import Header from '../../components/Header';
 import TaskCard from '../../components/TaskCard';
 import BottomNav from '../../components/BottomNav';
-import { Sparkles, Info, ArrowUpRight, Clock, Crown, Share2, ArrowRight } from 'lucide-react';
+import { Info, ArrowUpRight } from 'lucide-react';
 
 export default function Dashboard() {
   return (

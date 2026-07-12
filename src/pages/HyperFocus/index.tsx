@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Circle, Clock, Play, ArrowUp, Check, LayoutList, MonitorPlay, ChevronUp, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Clock, Check, LayoutList, MonitorPlay, ChevronUp, AlertTriangle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
 // Focus Card Component (One card per screen)
@@ -210,7 +210,6 @@ export default function HyperFocus() {
   };
 
   const fillProgress = Math.min(1, Math.max(0, dragY / maxDragUp));
-  const allCompleted = progress === 100;
 
   return (
     <div className="h-full w-full relative bg-[#16180a] text-white flex flex-col font-sans overflow-hidden">
