@@ -5,7 +5,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full flex flex-col bg-[#16180a] text-white overflow-hidden relative">
+    <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative">
       
       {/* Top Header with Logo */}
       <div className="pt-12 px-8 pb-4 flex items-center gap-3">
@@ -15,41 +15,41 @@ export default function SignUp() {
 
       <div className="flex-1 px-8 pt-4 flex flex-col justify-center pb-12">
         <div className="mb-8">
-          <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-2">Create<br/>Account</h1>
-          <p className="text-white/60 text-sm">Join Stoa to protect your mental energy</p>
+          <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-2 text-text-primary">Create<br/>Account</h1>
+          <p className="text-text-secondary text-sm">Join Stoa to protect your mental energy</p>
         </div>
 
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); navigate('/onboarding'); }}>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-              <User size={20} className="text-white/40" />
+              <User size={20} className="text-text-secondary" />
             </div>
             <input 
               type="text" 
               placeholder="Full name" 
-              className="w-full bg-[#1e2014] border border-[#2a2d1d] rounded-full h-[60px] pl-14 pr-6 text-sm text-white focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-white/30"
+              className="w-full bg-surface border border-border-color shadow-sm rounded-full h-[60px] pl-14 pr-6 text-sm text-text-primary focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-text-secondary"
             />
           </div>
 
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-              <Mail size={20} className="text-white/40" />
+              <Mail size={20} className="text-text-secondary" />
             </div>
             <input 
               type="email" 
               placeholder="Email address" 
-              className="w-full bg-[#1e2014] border border-[#2a2d1d] rounded-full h-[60px] pl-14 pr-6 text-sm text-white focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-white/30"
+              className="w-full bg-surface border border-border-color shadow-sm rounded-full h-[60px] pl-14 pr-6 text-sm text-text-primary focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-text-secondary"
             />
           </div>
 
           <div className="relative mb-6">
             <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-              <Lock size={20} className="text-white/40" />
+              <Lock size={20} className="text-text-secondary" />
             </div>
             <input 
               type="password" 
               placeholder="Password" 
-              className="w-full bg-[#1e2014] border border-[#2a2d1d] rounded-full h-[60px] pl-14 pr-6 text-sm text-white focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-white/30"
+              className="w-full bg-surface border border-border-color shadow-sm rounded-full h-[60px] pl-14 pr-6 text-sm text-text-primary focus:outline-none focus:border-primary-accent/50 transition-colors placeholder:text-text-secondary"
             />
           </div>
 
@@ -65,8 +65,8 @@ export default function SignUp() {
         </form>
       </div>
 
-      <div className="text-center pb-8 text-sm text-white/50">
-        Already have an account? <Link to="/login" className="text-white font-medium hover:underline">Log in</Link>
+      <div className="text-center pb-8 text-sm text-text-secondary">
+        Already have an account? <Link to="/login" className="text-text-primary font-medium hover:underline">Log in</Link>
       </div>
     </div>
   );

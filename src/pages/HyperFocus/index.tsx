@@ -71,7 +71,7 @@ function FocusCard({
   return (
     <div className="absolute inset-0 flex flex-col justify-center items-center z-20 pointer-events-none mt-2">
       <div 
-        className="w-full max-w-[340px] aspect-[4/4.5] max-h-[450px] bg-transparent border border-[#2a2d1d] rounded-[40px] flex flex-col justify-center items-center p-8 shadow-2xl relative pointer-events-auto cursor-grab active:cursor-grabbing overflow-hidden select-none"
+        className="w-full max-w-[340px] aspect-[4/4.5] max-h-[450px] bg-surface border border-border-color rounded-[40px] flex flex-col justify-center items-center p-8 shadow-sm relative pointer-events-auto cursor-grab active:cursor-grabbing overflow-hidden select-none"
         style={{ 
           transform: `translateY(${cardMoveY}px) rotate(${cardRotate}deg)`,
           transition: isDraggingRef.current ? 'none' : 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
@@ -101,14 +101,14 @@ function FocusCard({
             transition: isDraggingRef.current ? 'none' : 'opacity 0.2s'
           }}
         >
-          <span className="text-[10px] uppercase font-bold text-white/40 mb-1 tracking-widest animate-pulse">Swipe</span>
+          <span className="text-[10px] uppercase font-bold text-text-secondary mb-1 tracking-widest animate-pulse">Swipe</span>
           <div className="w-16 h-8 flex justify-center items-end pb-1.5">
              <ChevronUp size={20} className="text-black" strokeWidth={3} />
           </div>
         </div>
 
         {/* Content Layer */}
-        <div className={`relative z-10 flex flex-col items-center w-full transition-colors duration-200 ${fillProgress > 0.05 ? 'text-black' : 'text-white'}`}>
+        <div className={`relative z-10 flex flex-col items-center w-full transition-colors duration-200 ${fillProgress > 0.05 ? 'text-black' : 'text-text-primary'}`}>
           <span className={`font-bold tracking-widest text-xs uppercase mb-6 text-center transition-colors duration-200 ${fillProgress > 0.05 ? 'text-black/60' : 'text-primary-accent'}`}>
             Subtask {currentIndex} of {total}
           </span>
@@ -122,7 +122,7 @@ function FocusCard({
         <div 
           className={`absolute inset-0 flex justify-center items-center z-20 pointer-events-none transition-all duration-300 ${isSwiping ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
         >
-          <div className="w-24 h-24 bg-black rounded-full flex justify-center items-center shadow-2xl">
+          <div className="w-24 h-24 bg-surface border border-border-color rounded-full flex justify-center items-center shadow-lg">
             <Check size={48} className="text-primary-accent" strokeWidth={3} />
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function HyperFocus() {
   const fillProgress = Math.min(1, Math.max(0, dragY / maxDragUp));
 
   return (
-    <div className="h-full w-full relative bg-[#16180a] text-white flex flex-col font-sans overflow-hidden">
+    <div className="h-full w-full relative bg-bg-primary text-text-primary flex flex-col font-sans overflow-hidden">
       {/* Dynamic Background Effect */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-accent/10 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
 
@@ -222,15 +222,15 @@ export default function HyperFocus() {
           onClick={() => navigate('/dashboard')}
           className="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center"
         >
-          <ArrowLeft size={24} className="text-white" />
+          <ArrowLeft size={24} className="text-text-primary" />
         </button>
 
         {/* View Toggle */}
-        <div className="bg-[#2a2d1d] p-1 rounded-full flex gap-1">
+        <div className="bg-surface border border-border-color p-1 rounded-full flex gap-1 shadow-sm">
           <button 
             onClick={() => setViewMode('focus')}
             className={`flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-bold transition-all ${
-              viewMode === 'focus' ? 'bg-primary-accent text-black shadow-sm' : 'text-white/50 hover:text-white/80'
+              viewMode === 'focus' ? 'bg-primary-accent text-black shadow-sm' : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             <MonitorPlay size={16} />
@@ -239,7 +239,7 @@ export default function HyperFocus() {
           <button 
             onClick={() => setViewMode('list')}
             className={`flex items-center gap-2 px-5 py-2 rounded-full text-[13px] font-bold transition-all ${
-              viewMode === 'list' ? 'bg-primary-accent text-black shadow-sm' : 'text-white/50 hover:text-white/80'
+              viewMode === 'list' ? 'bg-primary-accent text-black shadow-sm' : 'text-text-secondary hover:text-text-primary'
             }`}
           >
             <LayoutList size={16} />
@@ -256,7 +256,7 @@ export default function HyperFocus() {
           {/* Title & Badges */}
           <div>
             {/* Eyebrow Label: Due Date */}
-            <div className="text-white/60 text-[13px] font-semibold flex items-center gap-1.5 mb-2 uppercase tracking-wide">
+            <div className="text-text-secondary text-[13px] font-semibold flex items-center gap-1.5 mb-2 uppercase tracking-wide">
                <Clock size={14} /> Due Oct 12
             </div>
             
@@ -265,7 +265,7 @@ export default function HyperFocus() {
             </h1>
             
             <div className="flex flex-wrap items-center gap-3">
-              <span className="bg-white text-black px-4 py-1.5 rounded-full text-[13px] font-bold">
+              <span className="bg-surface border border-border-color text-text-primary px-4 py-1.5 rounded-full text-[13px] font-bold shadow-sm">
                 High priority
               </span>
               <span className="bg-primary-accent text-black px-4 py-1.5 rounded-full text-[13px] font-bold">
@@ -277,12 +277,12 @@ export default function HyperFocus() {
           {/* Progress Section */}
           <div>
             <div className="flex justify-between items-end mb-3">
-              <span className="text-[15px] font-semibold text-white/90">Progress</span>
-              <span className="text-[15px] font-bold text-white">{progress}%</span>
+              <span className="text-[15px] font-semibold text-text-secondary">Progress</span>
+              <span className="text-[15px] font-bold text-text-primary">{progress}%</span>
             </div>
             {/* Striped Progress Bar Container */}
-            <div 
-              className="w-full h-7 flex rounded-full overflow-hidden bg-[#1a1c11]"
+              <div 
+              className="w-full h-7 flex rounded-full overflow-hidden bg-border-color"
               style={{
                 // Tighter, denser diagonal stripes for the unfilled portion
                 background: 'repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(190,238,2,0.3) 3px, rgba(190,238,2,0.3) 6px)'
@@ -324,7 +324,7 @@ export default function HyperFocus() {
           <div className="flex-1 overflow-y-auto scrollbar-hide pb-32 min-h-0">
             {/* Subtasks Header matching reference image */}
             <div className="mb-4 mt-2 shrink-0">
-              <h3 className="font-semibold text-[15px] text-white/90">Subtasks</h3>
+              <h3 className="font-semibold text-[15px] text-text-secondary">Subtasks</h3>
             </div>
 
             <div className="space-y-3">
@@ -332,13 +332,13 @@ export default function HyperFocus() {
                 <button 
                   key={task.id}
                   onClick={() => toggleTask(task.id)}
-                  className={`w-full p-4 rounded-[20px] border flex items-center gap-4 transition-all text-left ${
+                  className={`w-full p-4 rounded-[20px] border flex items-center gap-4 transition-all text-left shadow-sm ${
                     task.done 
-                      ? 'bg-primary-accent border-primary-accent shadow-lg text-black' 
-                      : 'bg-transparent border-[#2a2d1d] hover:border-white/20 text-white/90'
+                      ? 'bg-primary-accent border-primary-accent text-black' 
+                      : 'bg-surface border-border-color hover:bg-surface-hover text-text-primary'
                   }`}
                 >
-                  <div className={`shrink-0 flex items-center justify-center w-6 h-6 rounded-full transition-colors ${task.done ? 'bg-black text-primary-accent' : 'border-2 border-white/20'}`}>
+                  <div className={`shrink-0 flex items-center justify-center w-6 h-6 rounded-full transition-colors ${task.done ? 'bg-black text-primary-accent' : 'border-2 border-border-color'}`}>
                     {task.done && <Check size={14} strokeWidth={4} />}
                   </div>
                   <span className={`text-[15px] font-bold leading-snug transition-all`}>
@@ -414,7 +414,7 @@ export default function HyperFocus() {
       <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 delay-[600ms] ${
         isRevealing ? 'opacity-100' : 'opacity-0'
       }`}>
-        <div className="w-24 h-24 bg-black rounded-full flex justify-center items-center mb-6 shadow-2xl">
+        <div className="w-24 h-24 bg-surface border border-border-color shadow-sm rounded-full flex justify-center items-center mb-6">
           <Check size={48} className="text-primary-accent" />
         </div>
         <h2 className="text-black text-[40px] font-bold tracking-tight mb-2">Great Work!</h2>
@@ -427,7 +427,7 @@ export default function HyperFocus() {
           showWarningModal ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity" onClick={() => setShowWarningModal(false)}></div>
+        <div className="absolute inset-0 bg-black/20 backdrop-blur-md transition-opacity" onClick={() => setShowWarningModal(false)}></div>
         
         <div 
           className={`bg-primary-accent w-full rounded-t-[40px] p-8 pt-12 pb-10 relative z-10 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] flex flex-col items-center text-center ${

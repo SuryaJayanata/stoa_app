@@ -4,15 +4,23 @@
 
 @layer base {
   :root {
+    --bg-primary: #fcfcfc;
+    --text-primary: #000000;
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --border-color: rgba(0, 0, 0, 0.1);
+    --surface: #ffffff;
+    --surface-hover: rgba(0, 0, 0, 0.05);
+    
     --bg-utama: #202411;
     --primary-accent: #BEEE02;
     --secondary-accent: #D0E08B;
+    --blue-accent: #395FFA;
     --high-contrast: #FFFFFF;
   }
 
   body {
-    background-color: #000000;
-    color: var(--high-contrast);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-family: 'Manrope', sans-serif;
     -webkit-font-smoothing: antialiased;
   }

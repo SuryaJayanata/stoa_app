@@ -1,4 +1,4 @@
-import { Lock, Unlock, Play, Clock } from 'lucide-react';
+import { Clock, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface TaskCardProps {
@@ -8,7 +8,7 @@ interface TaskCardProps {
   timeBlock?: string;
   project?: string;
   isPrimary?: boolean;
-  isLocked?: boolean;
+  isCompleted?: boolean;
 }
 
 export default function TaskCard({ 
@@ -18,7 +18,7 @@ export default function TaskCard({
   timeBlock,
   project,
   isPrimary = false,
-  isLocked = false
+  isCompleted = false
 }: TaskCardProps) {
   const navigate = useNavigate();
 
@@ -26,38 +26,41 @@ export default function TaskCard({
     <div className={`relative p-6 rounded-[24px] overflow-hidden mb-4 border transition-all ${
       isPrimary 
         ? 'bg-primary-accent border-primary-accent text-black' 
-        : 'bg-white border-white text-black'
+        : isCompleted
+          ? 'bg-surface border-blue-accent/20 shadow-sm text-text-primary'
+          : 'bg-surface border-border-color hover:border-border-color/60 shadow-sm text-text-primary'
     }`}>
       <div className="mb-6">
         {project && (
-          <div className={`text-[11px] font-medium uppercase tracking-[0.1em] mb-2 ${isPrimary ? 'text-black/50' : 'text-black/40'}`}>
+          <div className={`text-[11px] font-medium uppercase tracking-[0.1em] mb-2 ${isPrimary ? 'text-black/50' : 'text-text-secondary'}`}>
             {project}
           </div>
         )}
-        <h3 className={`text-[24px] font-normal tracking-tight mb-2.5 leading-tight text-black`}>{title}</h3>
-        <div className={`flex items-center gap-1.5 text-[13px] font-light ${isPrimary ? 'text-black/70' : 'text-black/50'}`}>
+        <h3 className={`text-[24px] font-normal tracking-tight mb-2.5 leading-tight ${isPrimary ? 'text-black' : 'text-text-primary'}`}>{title}</h3>
+        <div className={`flex items-center gap-1.5 text-[13px] font-light ${isPrimary ? 'text-black/70' : 'text-text-secondary'}`}>
           <Clock size={16} strokeWidth={1.25} />
           {timeBlock ? `${timeBlock} • ${duration}` : duration}
         </div>
       </div>
 
       <button 
-        onClick={() => !isLocked && navigate(`/focus?taskId=${id}`)}
-        disabled={isLocked}
-        className={`w-full h-[56px] rounded-[20px] flex items-center p-1.5 transition-all relative group overflow-hidden ${
-          isPrimary ? 'bg-black text-primary-accent hover:scale-[1.02] active:scale-[0.98]' : 'bg-[#f4f5f8] text-black hover:bg-[#eaece5]'
+        onClick={() => !isCompleted && navigate(`/focus?taskId=${id}`)}
+        disabled={isCompleted}
+        className={`w-full flex items-center justify-between p-4 px-5 rounded-[20px] transition-all group overflow-hidden ${
+          isPrimary 
+            ? 'bg-black text-primary-accent hover:bg-black/90 active:scale-[0.98]' 
+            : isCompleted
+              ? 'bg-blue-accent/10 text-blue-accent'
+              : 'bg-surface-hover text-text-primary hover:bg-border-color active:scale-[0.98]'
         }`}
       >
-        <div className={`w-11 h-11 rounded-[14px] flex justify-center items-center relative z-10 transition-transform ${
-          isPrimary ? 'bg-primary-accent text-black group-hover:rotate-12' : 'bg-white text-black/50 shadow-sm group-hover:scale-105'
+        <span className="font-semibold text-[15px]">
+          {isCompleted ? 'Completed' : 'Start Task'}
+        </span>
+        <div className={`flex justify-center items-center transition-all ${isCompleted ? '' : 'group-hover:translate-x-1'} ${
+          isPrimary ? 'text-primary-accent' : isCompleted ? 'text-blue-accent' : 'text-text-secondary'
         }`}>
-          {isLocked ? <Lock size={15} strokeWidth={1.25} /> : (isPrimary ? <Play size={15} fill="currentColor" className="ml-0.5" /> : <Unlock size={15} strokeWidth={1.25} />)}
-        </div>
-        
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="font-normal text-[15px] tracking-wide">
-            {isLocked ? 'Locked' : 'Start Task'}
-          </span>
+          {isCompleted ? <CheckCircle2 size={20} strokeWidth={2} /> : <ArrowRight size={20} strokeWidth={2} />}
         </div>
       </button>
     </div>

@@ -97,7 +97,7 @@ export default function Splash() {
   }, [isDragging, dragOffset]);
 
   return (
-    <div className="h-full flex flex-col bg-[#16180a] text-white overflow-hidden relative touch-none select-none">
+    <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative touch-none select-none">
       
       {/* Top Header with Logo */}
       <div className="pt-12 px-8 pb-4 flex items-center gap-3 relative z-10">
@@ -128,10 +128,10 @@ export default function Splash() {
             className += "bg-primary-accent text-black border border-transparent";
             style = { transform: 'translateX(0) scale(1) rotate(0deg)', opacity: 1, zIndex: 10, width: '280px', height: '320px' };
           } else if (diff === 1) {
-            className += "bg-[#1e2014] border border-[#2a2d1d] text-white";
+            className += "bg-surface border border-border-color shadow-sm text-text-primary";
             style = { transform: 'translateX(60%) scale(0.9) rotate(8deg)', opacity: 0.7, zIndex: 5, width: '240px', height: '280px' };
           } else if (diff === -1 || diff === cards.length - 1) {
-            className += "bg-[#1e2014] border border-[#2a2d1d] text-white";
+            className += "bg-surface border border-border-color shadow-sm text-text-primary";
             style = { transform: 'translateX(-60%) scale(0.9) rotate(-8deg)', opacity: 0, zIndex: 5, width: '240px', height: '280px' };
           } else {
             style = { transform: 'translateX(100%) scale(0.8)', opacity: 0, zIndex: 0, width: '240px', height: '280px' };
@@ -148,11 +148,11 @@ export default function Splash() {
                   </div>
                 )}
                 {Icon && diff !== 0 && (
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex justify-center items-center mb-3">
+                  <div className="w-8 h-8 bg-border-color rounded-full flex justify-center items-center mb-3">
                     <Icon size={16} />
                   </div>
                 )}
-                <p className={`leading-tight font-semibold pr-4 ${diff !== 0 ? 'text-white/80 text-[13px]' : 'text-lg'}`}>
+                <p className={`leading-tight font-semibold pr-4 ${diff !== 0 ? 'text-text-secondary text-[13px]' : 'text-lg'}`}>
                   {card.title}
                 </p>
               </div>
@@ -173,10 +173,10 @@ export default function Splash() {
                     </button>
                   </div>
                   <div className="flex items-center">
-                    <div className="bg-[#1a1d0d] text-white rounded-full flex items-center px-4 py-2 gap-3">
+                    <div className="bg-surface-hover text-text-primary border border-border-color rounded-full flex items-center px-4 py-2 gap-3">
                       <span className="text-sm font-semibold">On</span>
                       <div className="w-10 h-6 bg-primary-accent rounded-full p-1 flex justify-end">
-                        <div className="w-4 h-4 bg-[#1a1d0d] rounded-full"></div>
+                        <div className="w-4 h-4 bg-white rounded-full shadow-sm"></div>
                       </div>
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export default function Splash() {
           <div 
             key={idx} 
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              idx === currentIndex ? 'w-6 bg-white/80' : 'w-1.5 bg-white/20'
+              idx === currentIndex ? 'w-6 bg-text-primary' : 'w-1.5 bg-border-color'
             }`}
           ></div>
         ))}
@@ -244,8 +244,8 @@ export default function Splash() {
       <div className="px-6 pb-10 z-20">
         <div 
           ref={swipeContainerRef}
-          className={`w-full border border-[#2a2d1d] h-[72px] rounded-full flex items-center p-2 relative overflow-hidden transition-all duration-300 ${
-            isDragging ? 'bg-[#1e2014] shadow-[0_0_20px_rgba(190,238,2,0.15)]' : 'bg-transparent'
+          className={`w-full border border-border-color h-[72px] rounded-full flex items-center p-2 relative overflow-hidden transition-all duration-300 ${
+            isDragging ? 'bg-surface shadow-[0_0_20px_rgba(190,238,2,0.15)]' : 'bg-transparent'
           }`}
         >
           {/* Gradient Fill Track */}
@@ -279,7 +279,7 @@ export default function Splash() {
           
           {/* Track Text */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            <span className={`font-semibold tracking-wide ml-8 text-white/70 transition-colors duration-300 ${
+            <span className={`font-semibold tracking-wide ml-8 text-text-secondary transition-colors duration-300 ${
               isDragging ? 'text-primary-accent' : ''
             }`}>
               {isDragging ? 'Start >>>' : 'Slide to start >>>'}

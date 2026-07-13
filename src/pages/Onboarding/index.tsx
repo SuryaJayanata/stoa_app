@@ -27,7 +27,7 @@ export default function Onboarding() {
   };
 
   return (
-    <div className="h-full flex flex-col bg-[#16180a] text-white overflow-hidden relative">
+    <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative">
       
       {/* Top Header with Back Button & Progress (Hidden on Step 4) */}
       {step < 4 && (
@@ -36,14 +36,14 @@ export default function Onboarding() {
             onClick={prevStep} 
             className="flex items-center justify-center -ml-2 p-2 hover:bg-white/5 rounded-full transition-colors"
           >
-            <ArrowLeft size={24} className="text-white" />
+            <ArrowLeft size={24} className="text-text-primary" />
           </button>
           
           <div className="flex gap-1.5">
             {[1, 2, 3].map((i) => (
               <div 
                 key={i} 
-                className={`h-1.5 rounded-full transition-all duration-500 ${i <= step ? 'w-6 bg-primary-accent' : 'w-2 bg-[#2a2d1d]'}`}
+                className={`h-1.5 rounded-full transition-all duration-500 ${i <= step ? 'w-6 bg-primary-accent' : 'w-2 bg-border-color'}`}
               />
             ))}
           </div>
@@ -60,14 +60,14 @@ export default function Onboarding() {
                 <Calendar size={32} />
               </div>
               <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-4">Sync Your<br/>Calendar</h1>
-              <p className="text-white/60 text-sm leading-relaxed mb-10">
-                Stoa needs to know your current schedule. We use this to find the perfect gaps for deep work without causing burnout. <strong className="text-white">Required for AI scheduling.</strong>
+              <p className="text-text-secondary text-sm leading-relaxed mb-10">
+                Stoa needs to know your current schedule. We use this to find the perfect gaps for deep work without causing burnout. <strong className="text-text-primary">Required for AI scheduling.</strong>
               </p>
 
               <div className="space-y-4">
                 <button 
                   onClick={nextStep}
-                  className="w-full bg-[#1e2014] border border-[#2a2d1d] h-[68px] rounded-2xl flex items-center px-4 hover:border-primary-accent/50 transition-colors group"
+                  className="w-full bg-surface border border-border-color shadow-sm h-[68px] rounded-2xl flex items-center px-4 hover:border-primary-accent/50 transition-colors group"
                 >
                   <div className="w-10 h-10 bg-white rounded-full flex justify-center items-center mr-4 group-hover:scale-110 transition-transform">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="w-5 h-5" alt="Google" />
@@ -76,7 +76,7 @@ export default function Onboarding() {
                 </button>
                 <button 
                   onClick={nextStep}
-                  className="w-full bg-[#1e2014] border border-[#2a2d1d] h-[68px] rounded-2xl flex items-center px-4 hover:border-primary-accent/50 transition-colors group"
+                  className="w-full bg-surface border border-border-color shadow-sm h-[68px] rounded-2xl flex items-center px-4 hover:border-primary-accent/50 transition-colors group"
                 >
                   <div className="w-10 h-10 bg-[#0078D4] rounded-full flex justify-center items-center mr-4 text-white group-hover:scale-110 transition-transform">
                     <Calendar size={18} />
@@ -93,7 +93,7 @@ export default function Onboarding() {
           <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex-1 flex flex-col justify-center">
               <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-4">Energy<br/>Profile</h1>
-              <p className="text-white/60 text-sm leading-relaxed mb-10">
+              <p className="text-text-secondary text-sm leading-relaxed mb-10">
                 When do you usually feel most focused and energized? AI will prioritize this time for heavy tasks.
               </p>
 
@@ -110,15 +110,15 @@ export default function Onboarding() {
                       key={item.id}
                       onClick={() => setSelectedEnergy(item.id)}
                       className={`w-full h-[76px] rounded-2xl flex items-center px-5 transition-all duration-300 border ${
-                        isSelected ? 'bg-primary-accent border-primary-accent text-black shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-[#1e2014] border-[#2a2d1d] text-white/80 hover:border-white/20'
+                        isSelected ? 'bg-primary-accent border-primary-accent text-black shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-surface border-border-color text-text-primary hover:border-black/20'
                       }`}
                     >
-                      <div className={`w-12 h-12 rounded-full flex justify-center items-center mr-4 transition-colors ${isSelected ? 'bg-black/10' : 'bg-[#16180a]'}`}>
-                        <Icon size={20} className={isSelected ? 'text-black' : 'text-white/50'} />
+                      <div className={`w-12 h-12 rounded-full flex justify-center items-center mr-4 transition-colors ${isSelected ? 'bg-black/10' : 'bg-bg-primary'}`}>
+                        <Icon size={20} className={isSelected ? 'text-black' : 'text-text-secondary'} />
                       </div>
                       <div className="flex flex-col items-start text-left">
-                        <span className={`font-semibold text-sm ${isSelected ? 'text-black' : 'text-white'}`}>{item.label}</span>
-                        <span className={`text-xs ${isSelected ? 'text-black/60' : 'text-white/40'}`}>{item.time}</span>
+                        <span className={`font-semibold text-sm ${isSelected ? 'text-black' : 'text-text-primary'}`}>{item.label}</span>
+                        <span className={`text-xs ${isSelected ? 'text-black/60' : 'text-text-secondary'}`}>{item.time}</span>
                       </div>
                       {isSelected && <Check className="ml-auto text-black" size={24} />}
                     </button>
@@ -132,12 +132,12 @@ export default function Onboarding() {
                 onClick={nextStep}
                 disabled={!selectedEnergy}
                 className={`w-full h-[60px] rounded-full flex items-center justify-between px-2 font-semibold transition-all duration-300 ${
-                  selectedEnergy ? 'bg-primary-accent text-black hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-[#1e2014] text-white/30 cursor-not-allowed'
+                  selectedEnergy ? 'bg-primary-accent text-black hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-surface border border-border-color text-text-secondary cursor-not-allowed'
                 }`}
               >
                 <span className="ml-6">Continue</span>
-                <div className={`w-11 h-11 rounded-full flex justify-center items-center shadow-sm transition-colors ${selectedEnergy ? 'bg-white' : 'bg-[#2a2d1d]'}`}>
-                  <ArrowRight size={20} className={selectedEnergy ? 'text-black' : 'text-white/30'} />
+                <div className={`w-11 h-11 rounded-full flex justify-center items-center shadow-sm transition-colors ${selectedEnergy ? 'bg-white' : 'bg-border-color'}`}>
+                  <ArrowRight size={20} className={selectedEnergy ? 'text-black' : 'text-text-secondary'} />
                 </div>
               </button>
             </div>
@@ -153,8 +153,8 @@ export default function Onboarding() {
               </div>
               <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-6">AI<br/>Commitment</h1>
               
-              <div className="space-y-6 text-white/70">
-                <p className="text-base leading-relaxed font-medium text-white/90">
+              <div className="space-y-6 text-text-secondary">
+                <p className="text-base leading-relaxed font-medium text-text-primary">
                   Allow Stoa to analyze your calendar and automatically block deep focus time.
                 </p>
                 
@@ -162,10 +162,10 @@ export default function Onboarding() {
                   onClick={() => setIsAgreed(!isAgreed)}
                   className="flex gap-4 items-start text-left group w-full"
                 >
-                  <div className={`mt-0.5 shrink-0 w-6 h-6 rounded-md flex justify-center items-center transition-colors border ${isAgreed ? 'bg-primary-accent border-primary-accent' : 'bg-[#1e2014] border-[#2a2d1d] group-hover:border-white/30'}`}>
+                  <div className={`mt-0.5 shrink-0 w-6 h-6 rounded-md flex justify-center items-center transition-colors border ${isAgreed ? 'bg-primary-accent border-primary-accent' : 'bg-surface border-border-color group-hover:border-black/30'}`}>
                     {isAgreed && <Check size={16} className="text-black" strokeWidth={3} />}
                   </div>
-                  <span className={`text-sm leading-relaxed transition-colors ${isAgreed ? 'text-white' : 'text-white/50'}`}>
+                  <span className={`text-sm leading-relaxed transition-colors ${isAgreed ? 'text-text-primary' : 'text-text-secondary'}`}>
                     I agree to let AI auto-reschedule low priority tasks and protect my peak energy hours.
                   </span>
                 </button>
@@ -185,12 +185,12 @@ export default function Onboarding() {
                 onClick={nextStep}
                 disabled={!isAgreed}
                 className={`w-full h-[60px] rounded-full flex items-center justify-between px-2 font-semibold transition-all duration-300 ${
-                  isAgreed ? 'bg-primary-accent text-black hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-[#1e2014] text-white/30 cursor-not-allowed'
+                  isAgreed ? 'bg-primary-accent text-black hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(190,238,2,0.2)]' : 'bg-surface border border-border-color text-text-secondary cursor-not-allowed'
                 }`}
               >
                 <span className="ml-6">I Agree</span>
-                <div className={`w-11 h-11 rounded-full flex justify-center items-center shadow-sm transition-colors ${isAgreed ? 'bg-white' : 'bg-[#2a2d1d]'}`}>
-                  <ArrowRight size={20} className={isAgreed ? 'text-black' : 'text-white/30'} />
+                <div className={`w-11 h-11 rounded-full flex justify-center items-center shadow-sm transition-colors ${isAgreed ? 'bg-white' : 'bg-border-color'}`}>
+                  <ArrowRight size={20} className={isAgreed ? 'text-black' : 'text-text-secondary'} />
                 </div>
               </button>
             </div>
@@ -205,7 +205,7 @@ export default function Onboarding() {
             </div>
             
             <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight mb-4">You're All Set!</h1>
-            <p className="text-white/60 text-sm leading-relaxed mb-8">
+            <p className="text-text-secondary text-sm leading-relaxed mb-8">
               Your AI focus engine is now configured and ready to protect your energy.
             </p>
 

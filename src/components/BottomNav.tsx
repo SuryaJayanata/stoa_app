@@ -1,4 +1,4 @@
-import { Home, Calendar, Mic, LineChart, User } from 'lucide-react';
+import { Home, Calendar, Plus, LineChart, User } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function BottomNav() {
@@ -24,7 +24,7 @@ export default function BottomNav() {
       
       {/* Glass Background */}
       <div 
-        className="absolute inset-0 bg-[#000000]/65 backdrop-blur-xl"
+        className="absolute inset-0 bg-[#16180a]/90 backdrop-blur-xl"
         style={{ 
           maskImage: `url("${svgMask}")`,
           WebkitMaskImage: `url("${svgMask}")`,
@@ -42,7 +42,7 @@ export default function BottomNav() {
       >
         <path 
           d={navPath}
-          stroke="rgba(255, 255, 255, 0.15)"
+          stroke="rgba(255, 255, 255, 0.1)"
           strokeWidth="1.5"
         />
       </svg>
@@ -67,7 +67,7 @@ export default function BottomNav() {
             >
               <Icon 
                 size={26} 
-                className={`transition-colors duration-300 ${isActive ? 'text-primary-accent' : 'text-white/40 group-hover:text-white/80'}`} 
+                className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/30 group-hover:text-white/60'}`} 
                 strokeWidth={isActive ? 2.5 : 2}
               />
               {isActive && (
@@ -83,7 +83,7 @@ export default function BottomNav() {
         className="absolute left-1/2 -translate-x-1/2 top-[8px] w-[72px] h-[72px] bg-primary-accent rounded-full flex justify-center items-center text-black shadow-[0_8px_25px_rgba(190,238,2,0.3)] hover:scale-105 active:scale-95 transition-all z-10"
         onClick={() => alert("AI Capture Triggered")}
       >
-        <Mic size={34} strokeWidth={2.5} />
+        <Plus size={34} strokeWidth={2.5} />
       </button>
 
     </div>
