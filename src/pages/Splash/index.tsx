@@ -36,12 +36,10 @@ export default function Splash() {
   const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Swipe Button State
   const [dragOffset, setDragOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const swipeContainerRef = useRef<HTMLDivElement>(null);
 
-  // Carousel timer
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % cards.length);
@@ -49,7 +47,6 @@ export default function Splash() {
     return () => clearInterval(timer);
   }, []);
 
-  // Swipe logic
   const handlePointerMove = (clientX: number) => {
     if (!isDragging || !swipeContainerRef.current) return;
     const rect = swipeContainerRef.current.getBoundingClientRect();
@@ -57,7 +54,7 @@ export default function Splash() {
     const scale = rect.width / localWidth;
     
     const localClientX = (clientX - rect.left) / scale;
-    const maxDrag = localWidth - 56 - 16; // thumb width (56) + padding (16)
+    const maxDrag = localWidth - 56 - 16;
     
     let newX = localClientX - 28; 
     if (newX < 0) newX = 0;
@@ -74,7 +71,7 @@ export default function Splash() {
       setDragOffset(maxDrag);
       navigate('/login');
     } else {
-      setDragOffset(0); // Snap back
+      setDragOffset(0);
     }
   };
 
@@ -99,13 +96,11 @@ export default function Splash() {
   return (
     <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative touch-none select-none">
       
-      {/* Top Header with Logo */}
       <div className="pt-12 px-8 pb-4 flex items-center gap-3 relative z-10">
         <img src="/stoa.svg" alt="Stoa Logo" className="w-8 h-8" />
         <span className="font-bold text-xl tracking-wide">Stoa</span>
       </div>
 
-      {/* Top Text */}
       <div className="px-8 pb-8 relative z-10">
         <h1 className="text-[32px] font-medium leading-[1.1] tracking-tight">
           Complete<br/>
@@ -114,7 +109,6 @@ export default function Splash() {
         </h1>
       </div>
 
-      {/* Center Carousel Area */}
       <div className="flex-1 relative flex items-center justify-center w-full z-10">
         {cards.map((card, index) => {
           let diff = index - currentIndex;
@@ -157,7 +151,6 @@ export default function Splash() {
                 </p>
               </div>
               
-              {/* Card 1: Counter */}
               {card.type === 'counter' && diff === 0 && (
                 <>
                   <div className="flex items-center justify-between my-4 px-2">
@@ -183,7 +176,6 @@ export default function Splash() {
                 </>
               )}
 
-              {/* Card 2: Progress */}
               {card.type === 'progress' && diff === 0 && (
                 <div className="mt-8 space-y-4">
                   <div className="flex justify-between text-sm font-semibold">
@@ -196,7 +188,6 @@ export default function Splash() {
                 </div>
               )}
 
-              {/* Card 3: Badges */}
               {card.type === 'badges' && diff === 0 && (
                 <div className="mt-8 flex flex-col gap-3">
                   <div className="bg-black/10 px-4 py-3 rounded-xl flex justify-between items-center text-sm font-medium">
@@ -212,7 +203,6 @@ export default function Splash() {
                 </div>
               )}
 
-              {/* Card 4: Lock */}
               {card.type === 'lock' && diff === 0 && (
                 <div className="mt-8 flex justify-center items-center">
                   <div className="w-24 h-24 rounded-full border-[6px] border-black/10 flex justify-center items-center">
@@ -228,7 +218,6 @@ export default function Splash() {
         })}
       </div>
 
-      {/* Pagination Indicators */}
       <div className="flex justify-center gap-2 mb-8 z-20">
         {cards.map((_, idx) => (
           <div 
@@ -240,7 +229,6 @@ export default function Splash() {
         ))}
       </div>
 
-      {/* Swipe Button */}
       <div className="px-6 pb-10 z-20">
         <div 
           ref={swipeContainerRef}
@@ -248,7 +236,6 @@ export default function Splash() {
             isDragging ? 'bg-surface shadow-[0_0_20px_rgba(190,238,2,0.15)]' : 'bg-transparent'
           }`}
         >
-          {/* Gradient Fill Track */}
           <div 
             className="absolute left-0 top-0 bottom-0 rounded-full pointer-events-none"
             style={{ 
@@ -259,7 +246,6 @@ export default function Splash() {
             }}
           ></div>
 
-          {/* Swipable Thumb */}
           <div 
             onPointerDown={(e) => {
               setIsDragging(true);
@@ -277,7 +263,6 @@ export default function Splash() {
             <Play size={20} className="text-black ml-1" fill="currentColor" />
           </div>
           
-          {/* Track Text */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
             <span className={`font-semibold tracking-wide ml-8 text-text-secondary transition-colors duration-300 ${
               isDragging ? 'text-primary-accent' : ''

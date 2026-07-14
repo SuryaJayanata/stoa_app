@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, Check, LayoutList, MonitorPlay, ChevronUp, AlertTriangle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
-// Focus Card Component (One card per screen)
 function FocusCard({ 
   task, 
   onComplete, 
@@ -18,10 +17,9 @@ function FocusCard({
   const [isSwiping, setIsSwiping] = useState(false);
   const isDraggingRef = useRef(false);
   const startYRef = useRef(0);
-  const maxDragUp = -250; // Required distance to complete
+  const maxDragUp = -250;
 
   useEffect(() => {
-    // Reset state when a new task is mounted
     setDragY(0);
     setIsSwiping(false);
   }, [task.id]);
@@ -36,7 +34,7 @@ function FocusCard({
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDraggingRef.current) return;
     const diff = e.clientY - startYRef.current;
-    if (diff < 0) { // Only swipe up
+    if (diff < 0) {
       setDragY(Math.max(diff, maxDragUp)); 
     } else {
       setDragY(0);
@@ -48,23 +46,20 @@ function FocusCard({
     isDraggingRef.current = false;
     e.currentTarget.releasePointerCapture(e.pointerId);
     
-    // Threshold to complete
     if (dragY <= maxDragUp * 0.7) {
       setIsSwiping(true);
-      setDragY(maxDragUp * 2); // Instantly expand completely
+      setDragY(maxDragUp * 2);
       setTimeout(() => {
         onComplete();
-      }, 500); // Wait for fill animation before proceeding
+      }, 500);
     } else {
-      setDragY(0); // Snap back to 0
+      setDragY(0);
     }
   };
 
-  // Convert drag distance to a scale factor for the radial fill
   const fillProgress = Math.min(1, Math.max(0, dragY / maxDragUp));
-  const scale = 1 + (fillProgress * 30); // Start at scale 1 (base size), scale up to 31x
+  const scale = 1 + (fillProgress * 30);
   
-  // Card moves slightly (15% of the drag distance) for a heavy, magnetic feel
   const cardMoveY = dragY * 0.15;
   const cardRotate = dragY * 0.015;
 
@@ -81,7 +76,6 @@ function FocusCard({
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        {/* Radial Fill Element inside the card (Acts as the thumb grip at scale 1) */}
         <div 
           className="absolute left-1/2 w-16 h-16 bg-primary-accent rounded-full z-0"
           style={{ 
@@ -93,11 +87,10 @@ function FocusCard({
           }}
         />
 
-        {/* Swipe Indicator Overlay (Text and Icon that fade out on drag) */}
         <div 
           className="absolute bottom-1 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-10"
           style={{ 
-            opacity: 1 - (fillProgress * 10), // Fades out completely by 10% drag
+            opacity: 1 - (fillProgress * 10),
             transition: isDraggingRef.current ? 'none' : 'opacity 0.2s'
           }}
         >
@@ -107,7 +100,6 @@ function FocusCard({
           </div>
         </div>
 
-        {/* Content Layer */}
         <div className={`relative z-10 flex flex-col items-center w-full transition-colors duration-200 ${fillProgress > 0.05 ? 'text-black' : 'text-text-primary'}`}>
           <span className={`font-bold tracking-widest text-xs uppercase mb-6 text-center transition-colors duration-200 ${fillProgress > 0.05 ? 'text-black/60' : 'text-primary-accent'}`}>
             Subtask {currentIndex} of {total}
@@ -118,7 +110,6 @@ function FocusCard({
           </h2>
         </div>
 
-        {/* Success Checkmark overlay when fully swiped */}
         <div 
           className={`absolute inset-0 flex justify-center items-center z-20 pointer-events-none transition-all duration-300 ${isSwiping ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
         >
@@ -134,10 +125,8 @@ function FocusCard({
 export default function HyperFocus() {
   const navigate = useNavigate();
   
-  // Dual-mode state
   const [viewMode, setViewMode] = useState<'focus' | 'list'>('focus');
 
-  // Mock subtasks
   const [subtasks, setSubtasks] = useState([
     { id: 1, text: "Review previous quarter metrics", done: false },
     { id: 2, text: "Outline main strategy pillars for Q3", done: false },
@@ -152,11 +141,9 @@ export default function HyperFocus() {
   const completedCount = subtasks.filter(t => t.done).length;
   const progress = Math.round((completedCount / subtasks.length) * 100);
 
-  // Focus Mode Active Task
   const activeTaskIndex = subtasks.findIndex(t => !t.done);
   const activeTask = activeTaskIndex !== -1 ? subtasks[activeTaskIndex] : null;
 
-  // List Mode Bottom Sheet Logic
   const [dragY, setDragY] = useState(0);
   const [isRevealing, setIsRevealing] = useState(false);
   const [showWarningModal, setShowWarningModal] = useState(false);
@@ -164,7 +151,6 @@ export default function HyperFocus() {
   const isDraggingRef = useRef(false);
   const startYRef = useRef(0);
 
-  // Trigger reveal automatically when Focus mode finishes all tasks
   useEffect(() => {
     if (viewMode === 'focus' && progress === 100 && !isRevealing) {
       setIsRevealing(true);
@@ -213,10 +199,8 @@ export default function HyperFocus() {
 
   return (
     <div className="h-full w-full relative bg-bg-primary text-text-primary flex flex-col font-sans overflow-hidden">
-      {/* Dynamic Background Effect */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-accent/10 rounded-full blur-[100px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
 
-      {/* Top Bar */}
       <div className="flex justify-between items-center px-6 pb-6 relative z-10 shrink-0">
         <button 
           onClick={() => navigate('/dashboard')}
@@ -225,7 +209,6 @@ export default function HyperFocus() {
           <ArrowLeft size={24} className="text-text-primary" />
         </button>
 
-        {/* View Toggle */}
         <div className="bg-surface border border-border-color p-1 rounded-full flex gap-1 shadow-sm">
           <button 
             onClick={() => setViewMode('focus')}
@@ -250,12 +233,9 @@ export default function HyperFocus() {
 
       <div className="flex-1 flex flex-col px-6 relative z-10 overflow-hidden min-h-0">
         
-        {/* New Layout matching reference image */}
         <div className="mb-8 shrink-0 flex flex-col gap-6 mt-4">
           
-          {/* Title & Badges */}
           <div>
-            {/* Eyebrow Label: Due Date */}
             <div className="text-text-secondary text-[13px] font-semibold flex items-center gap-1.5 mb-2 uppercase tracking-wide">
                <Clock size={14} /> Due Oct 12
             </div>
@@ -274,17 +254,14 @@ export default function HyperFocus() {
             </div>
           </div>
 
-          {/* Progress Section */}
           <div>
             <div className="flex justify-between items-end mb-3">
               <span className="text-[15px] font-semibold text-text-secondary">Progress</span>
               <span className="text-[15px] font-bold text-text-primary">{progress}%</span>
             </div>
-            {/* Striped Progress Bar Container */}
               <div 
               className="w-full h-7 flex rounded-full overflow-hidden bg-border-color"
               style={{
-                // Tighter, denser diagonal stripes for the unfilled portion
                 background: 'repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(190,238,2,0.3) 3px, rgba(190,238,2,0.3) 6px)'
               }}
             >
@@ -299,9 +276,7 @@ export default function HyperFocus() {
           
         </div>
 
-        {/* --- DUAL MODE RENDERING --- */}
         
-        {/* MODE: FOCUS (1 Card per screen) */}
         {viewMode === 'focus' && (
           <div className="flex-1 flex flex-col justify-center items-center relative z-10 w-full touch-none select-none pb-16">
              {activeTask ? (
@@ -319,10 +294,8 @@ export default function HyperFocus() {
           </div>
         )}
 
-        {/* MODE: LIST (Standard checklist) */}
         {viewMode === 'list' && (
           <div className="flex-1 overflow-y-auto scrollbar-hide pb-32 min-h-0">
-            {/* Subtasks Header matching reference image */}
             <div className="mb-4 mt-2 shrink-0">
               <h3 className="font-semibold text-[15px] text-text-secondary">Subtasks</h3>
             </div>
@@ -352,13 +325,12 @@ export default function HyperFocus() {
         
       </div>
 
-      {/* Floating Bottom Action - List Mode Only */}
       {viewMode === 'list' && (
         <div 
            className="absolute left-0 w-full z-20 flex justify-center touch-none pointer-events-auto cursor-grab active:cursor-grabbing select-none"
            style={{ 
              bottom: 0,
-             height: '56px', // Base visible height
+             height: '56px',
              transform: `translateY(${dragY}px)`,
              transition: isDraggingRef.current ? 'none' : 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
            }}
@@ -367,23 +339,20 @@ export default function HyperFocus() {
            onPointerUp={handlePointerUp}
            onPointerCancel={handlePointerUp}
         >
-          {/* Infinite Base Background with Clip */}
           <div className="absolute top-0 left-0 w-full h-[1000px] bg-white rounded-t-[24px] overflow-hidden">
-             {/* Large Radial Green Fill rising from below */}
              <div 
                className="absolute left-1/2 bg-primary-accent rounded-full"
                style={{
                  width: '400px',
                  height: '400px',
                  marginLeft: '-200px',
-                 top: '56px', // Starts perfectly hidden below the 56px visible tab
+                 top: '56px',
                  transformOrigin: 'center center',
-                 transform: `scale(${1 + (fillProgress * 0.8)})`, // Scales up to cover the tab with a curved top
+                 transform: `scale(${1 + (fillProgress * 0.8)})`,
                }}
              />
           </div>
 
-          {/* Foreground Content */}
           <div className="relative z-10 w-full h-[56px] flex flex-col justify-center items-center pointer-events-none">
             <div className={`w-10 h-1 rounded-full mb-1 transition-colors duration-200 ${fillProgress > 0.1 ? 'bg-black/50' : 'bg-black/20'}`}></div>
             <div className="relative w-full h-6 flex justify-center items-center overflow-hidden">
@@ -398,7 +367,6 @@ export default function HyperFocus() {
         </div>
       )}
 
-      {/* Radial Reveal Animation Overlay */}
       <div 
         className={`fixed left-1/2 w-10 h-10 bg-primary-accent rounded-full pointer-events-none z-40 transition-all duration-[800ms] ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center items-center ${
           isRevealing ? 'scale-[150] opacity-100' : 'scale-0 opacity-0'
@@ -410,7 +378,6 @@ export default function HyperFocus() {
         }}
       />
       
-      {/* Success Message revealed after radial expansion */}
       <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center pointer-events-none transition-opacity duration-700 delay-[600ms] ${
         isRevealing ? 'opacity-100' : 'opacity-0'
       }`}>
@@ -421,7 +388,6 @@ export default function HyperFocus() {
         <p className="text-black/70 font-bold text-lg">Task completed successfully.</p>
       </div>
 
-      {/* Warning Modal for Unfinished Tasks */}
       <div 
         className={`fixed inset-0 z-50 flex flex-col justify-end transition-all duration-400 ${
           showWarningModal ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -434,7 +400,6 @@ export default function HyperFocus() {
             showWarningModal ? 'translate-y-0' : 'translate-y-full'
           }`}
         >
-          {/* Floating Warning Icon */}
           <div className="w-16 h-16 rounded-full bg-black border-4 border-primary-accent absolute -top-8 flex justify-center items-center text-primary-accent">
             <AlertTriangle size={28} />
           </div>

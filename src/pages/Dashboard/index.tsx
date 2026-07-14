@@ -17,28 +17,10 @@ export default function Dashboard() {
                <Info size={14} />
                <span>You have <span className="font-semibold text-text-primary">3 critical</span> tasks this week</span>
              </div>
-             <button className="text-blue-accent hover:underline font-medium">See all</button>
+             <button className="text-text-primary hover:underline font-medium">See all</button>
           </div>
 
           <div className="flex flex-col gap-3">
-             <div className="bg-primary-accent rounded-[24px] p-5 relative overflow-hidden text-black flex flex-col justify-between min-h-[130px]">
-                  
-                <div className="absolute -right-12 -top-16 w-64 h-64 bg-black/5 rounded-full pointer-events-none"></div>
-                <div className="absolute right-8 -bottom-32 w-72 h-72 bg-black/5 rounded-full pointer-events-none"></div>
-
-                <div className="flex justify-between items-start relative z-10">
-                   <span className="font-semibold text-[14px] text-black/80">Q3 Strategy</span>
-                   <button className="w-8 h-8 rounded-full bg-transparent text-black flex justify-center items-center shrink-0 hover:scale-105 transition-transform">
-                     <ArrowUpRight size={22} strokeWidth={2} />
-                   </button>
-                </div>
-                
-                <div className="relative z-10 mt-4">
-                   <div className="text-[36px] font-bold leading-none tracking-tight mb-1.5 text-black">4/7</div>
-                   <p className="text-black/70 text-[13px] font-medium w-[90%]">Finish drafting the remaining slides and metrics.</p>
-                </div>
-             </div>
-
              <div className="bg-surface shadow-sm border border-border-color rounded-[24px] p-5 relative overflow-hidden flex flex-col mt-1">
                 
                 <div className="flex justify-between items-center mb-6">
@@ -57,7 +39,7 @@ export default function Dashboard() {
                    </div>
                    <div>
                       <div className="text-text-secondary text-[12px] mb-1">Largest</div>
-                      <div className="text-[22px] font-medium leading-none text-blue-accent">14 <span className="text-[12px] text-text-secondary font-normal ml-0.5">tasks</span></div>
+                      <div className="text-[22px] font-medium leading-none text-primary-accent">14 <span className="text-[12px] text-text-secondary font-normal ml-0.5">tasks</span></div>
                    </div>
                 </div>
 
@@ -73,11 +55,11 @@ export default function Dashboard() {
                    ].map((item, i) => (
                      <div key={i} className="flex flex-col items-center flex-1 h-full justify-end">
                         <div className={`px-1.5 py-1 rounded-[6px] text-[10px] font-bold mb-2 flex items-center justify-center min-w-[24px] ${
-                           item.active ? 'bg-blue-accent text-white' : 'bg-surface-hover text-text-secondary'
+                           item.active ? 'bg-primary-accent text-black' : 'bg-surface-hover text-text-secondary'
                         }`}>
                            {item.val}
                         </div>
-                        <div className={`w-full max-w-[32px] rounded-[8px] transition-all duration-500 ${item.active ? 'bg-blue-accent' : 'bg-surface-hover'}`} style={{ height: item.h }}></div>
+                        <div className={`w-full max-w-[32px] rounded-[8px] transition-all duration-500 ${item.active ? 'bg-primary-accent' : 'bg-surface-hover'}`} style={{ height: item.h }}></div>
                         <div className={`text-[11px] mt-2 font-medium ${item.active ? 'text-text-primary' : 'text-text-secondary'}`}>
                            {item.day}
                         </div>

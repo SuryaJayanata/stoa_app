@@ -7,7 +7,6 @@ export default function SignUp() {
   return (
     <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative">
       
-      {/* Top Header with Logo */}
       <div className="pt-12 px-8 pb-4 flex items-center gap-3">
         <img src="/stoa.svg" alt="Stoa Logo" className="w-8 h-8" />
         <span className="font-bold text-xl tracking-wide">Stoa</span>

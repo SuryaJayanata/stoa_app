@@ -27,7 +27,7 @@ export default function TaskCard({
       isPrimary 
         ? 'bg-primary-accent border-primary-accent text-black' 
         : isCompleted
-          ? 'bg-surface border-blue-accent/20 shadow-sm text-text-primary'
+          ? 'bg-surface border-primary-accent/40 shadow-sm text-text-primary'
           : 'bg-surface border-border-color hover:border-border-color/60 shadow-sm text-text-primary'
     }`}>
       <div className="mb-6">
@@ -50,7 +50,7 @@ export default function TaskCard({
           isPrimary 
             ? 'bg-black text-primary-accent hover:bg-black/90 active:scale-[0.98]' 
             : isCompleted
-              ? 'bg-blue-accent/10 text-blue-accent'
+              ? 'bg-primary-accent/20 text-text-primary'
               : 'bg-surface-hover text-text-primary hover:bg-border-color active:scale-[0.98]'
         }`}
       >
@@ -58,7 +58,7 @@ export default function TaskCard({
           {isCompleted ? 'Completed' : 'Start Task'}
         </span>
         <div className={`flex justify-center items-center transition-all ${isCompleted ? '' : 'group-hover:translate-x-1'} ${
-          isPrimary ? 'text-primary-accent' : isCompleted ? 'text-blue-accent' : 'text-text-secondary'
+          isPrimary ? 'text-primary-accent' : isCompleted ? 'text-text-primary' : 'text-text-secondary'
         }`}>
           {isCompleted ? <CheckCircle2 size={20} strokeWidth={2} /> : <ArrowRight size={20} strokeWidth={2} />}
         </div>

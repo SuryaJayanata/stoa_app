@@ -29,7 +29,6 @@ export default function Onboarding() {
   return (
     <div className="h-full flex flex-col bg-bg-primary text-text-primary overflow-hidden relative">
       
-      {/* Top Header with Back Button & Progress (Hidden on Step 4) */}
       {step < 4 && (
         <div className="pt-12 px-8 pb-4 flex items-center justify-between z-10">
           <button 
@@ -52,7 +51,6 @@ export default function Onboarding() {
 
       <div className={`flex-1 px-8 flex flex-col pb-12 overflow-y-auto scrollbar-hide ${step === 4 ? 'pt-12' : 'pt-4'}`}>
         
-        {/* Step 1: Calendar Sync */}
         {step === 1 && (
           <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex-1 flex flex-col justify-center">
@@ -88,7 +86,6 @@ export default function Onboarding() {
           </div>
         )}
 
-        {/* Step 2: Energy Profile */}
         {step === 2 && (
           <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex-1 flex flex-col justify-center">
@@ -144,7 +141,6 @@ export default function Onboarding() {
           </div>
         )}
 
-        {/* Step 3: Commitment */}
         {step === 3 && (
           <div className="flex flex-col h-full animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex-1 flex flex-col justify-center">
@@ -197,7 +193,6 @@ export default function Onboarding() {
           </div>
         )}
 
-        {/* Step 4: Success */}
         {step === 4 && (
           <div className="flex flex-col h-full animate-in fade-in zoom-in-95 duration-500 justify-center items-center text-center">
             <div className="w-24 h-24 bg-primary-accent rounded-full flex justify-center items-center mb-8 text-black shadow-[0_0_40px_rgba(190,238,2,0.4)]">
