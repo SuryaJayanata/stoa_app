@@ -1,6 +1,6 @@
 import Header from '../../components/Header';
 import BottomNav from '../../components/BottomNav';
-import { TrendingUp, TrendingDown, Zap, Moon, Coffee, Flame, Battery, BatteryCharging } from 'lucide-react';
+import { TrendingUp, Zap, Moon, Coffee, Flame, BatteryCharging } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Energy() {
@@ -32,7 +32,7 @@ export default function Energy() {
 
   const insights = [
     { icon: Zap, label: 'Peak Hours', value: '9 AM – 11 AM', desc: 'Your most productive window', color: 'bg-primary-accent text-black' },
-    { icon: Moon, label: 'Low Energy', value: '2 PM – 4 PM', desc: 'Consider a break or light tasks', color: 'bg-surface-hover text-text-primary' },
+    { icon: Moon, label: 'Low Energy', value: '2 PM – 4 PM', desc: 'Consider a break or light tasks', color: 'bg-secondary-accent text-black' },
     { icon: Coffee, label: 'Avg. Focus', value: '3.2 hrs', desc: 'Deep work sessions per day', color: 'bg-surface-hover text-text-primary' },
   ];
 
@@ -52,7 +52,7 @@ export default function Energy() {
             <div>
               <div className="text-black/60 text-[12px] font-bold uppercase tracking-wider mb-2">Current Energy</div>
               <div className="flex items-end gap-2">
-                <span className="text-[48px] font-bold text-black leading-none">76</span>
+                <span className="text-[48px] font-medium text-black leading-none">76</span>
                 <span className="text-black/60 text-[16px] font-bold mb-2">/ 100</span>
               </div>
             </div>
@@ -74,6 +74,25 @@ export default function Energy() {
               <span>Optimal</span>
               <span>Peak</span>
             </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3 mb-6">
+          <div className="bg-primary-accent border border-transparent rounded-[20px] p-4 text-black">
+            <div className="flex items-center gap-2 mb-3">
+              <Flame size={18} className="text-black" />
+              <span className="text-[12px] text-black/70 font-bold uppercase tracking-wider">Streak</span>
+            </div>
+            <div className="text-[28px] font-bold leading-none">5 days</div>
+            <p className="text-[11px] text-black/60 mt-1 font-medium">Consistent energy</p>
+          </div>
+          <div className="bg-secondary-accent border border-transparent rounded-[20px] p-4 text-black">
+            <div className="flex items-center gap-2 mb-3">
+              <BatteryCharging size={18} className="text-black" />
+              <span className="text-[12px] text-black/70 font-bold uppercase tracking-wider">Recovery</span>
+            </div>
+            <div className="text-[28px] font-bold leading-none">92%</div>
+            <p className="text-[11px] text-black/60 mt-1 font-medium">Sleep quality score</p>
           </div>
         </div>
 
@@ -107,7 +126,7 @@ export default function Energy() {
               return (
                 <div key={i} className="flex flex-col items-center flex-1 h-full justify-end">
                   <div className={`px-1 py-0.5 rounded-[5px] text-[9px] font-bold mb-1.5 ${
-                    isHigh ? 'text-primary-accent' : 'text-text-secondary'
+                    isHigh ? 'text-text-secondary' : 'text-text-secondary'
                   }`}>
                     {item.level}%
                   </div>
@@ -149,24 +168,7 @@ export default function Energy() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-6">
-          <div className="bg-surface border border-border-color/60 rounded-[20px] p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Flame size={18} className="text-primary-accent" />
-              <span className="text-[12px] text-text-secondary font-medium">Streak</span>
-            </div>
-            <div className="text-[28px] font-bold text-text-primary leading-none">5 days</div>
-            <p className="text-[11px] text-text-secondary mt-1">Consistent energy</p>
-          </div>
-          <div className="bg-surface border border-border-color/60 rounded-[20px] p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <BatteryCharging size={18} className="text-primary-accent" />
-              <span className="text-[12px] text-text-secondary font-medium">Recovery</span>
-            </div>
-            <div className="text-[28px] font-bold text-text-primary leading-none">92%</div>
-            <p className="text-[11px] text-text-secondary mt-1">Sleep quality score</p>
-          </div>
-        </div>
+
 
       </div>
 

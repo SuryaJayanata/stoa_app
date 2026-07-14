@@ -106,6 +106,7 @@ export default function Dashboard() {
             project="Stoa App"
             timeBlock="11:00 AM - 11:20 AM"
             duration="20m"
+            isSecondary={true}
           />
           <TaskCard 
             id="task-3"

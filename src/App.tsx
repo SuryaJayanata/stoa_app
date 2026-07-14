@@ -10,6 +10,9 @@ import Energy from './pages/Energy';
 import Profile from './pages/Profile';
 import HyperFocus from './pages/HyperFocus';
 import InputManual from './pages/InputManual';
+import AccountSettings from './pages/AccountSettings';
+import Privacy from './pages/Privacy';
+import Support from './pages/Support';
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/focus" element={<HyperFocus />} />
               <Route path="/input-manual" element={<InputManual />} />
+              <Route path="/account-settings" element={<AccountSettings />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/support" element={<Support />} />
               <Route path="/" element={<Navigate to="/splash" replace />} />
             </Routes>
           </div>
