@@ -12,13 +12,7 @@ export default function Dashboard() {
         
         <div className="mb-4 pt-2">
           <h2 className="text-[28px] font-medium leading-tight mb-2 text-text-primary">Tasks overview</h2>
-          <div className="flex justify-between items-center text-[13px] mb-4">
-             <div className="flex items-center gap-1.5 text-text-secondary">
-               <Info size={14} />
-               <span>You have <span className="font-semibold text-text-primary">3 critical</span> tasks this week</span>
-             </div>
-             <button className="text-text-primary hover:underline font-medium">See all</button>
-          </div>
+
 
           <div className="flex flex-col gap-3">
              <div className="bg-surface shadow-sm border border-border-color rounded-[24px] p-5 relative overflow-hidden flex flex-col mt-1">
@@ -72,7 +66,7 @@ export default function Dashboard() {
 
         <div className="mb-6">
            <div className="flex items-center gap-3 mb-4">
-              <h2 className="text-[28px] font-medium leading-tight text-text-primary">Workflows</h2>
+              <h2 className="text-[28px] font-medium leading-tight text-text-primary">All Tasks</h2>
            </div>
 
            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">

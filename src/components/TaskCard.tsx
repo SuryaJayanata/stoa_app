@@ -50,23 +50,25 @@ export default function TaskCard({
       <button 
         onClick={() => !isCompleted && navigate(`/focus?taskId=${id}`)}
         disabled={isCompleted}
-        className={`w-full flex items-center justify-between p-4 px-5 rounded-[20px] transition-all group overflow-hidden ${
-          isPrimary 
-            ? 'bg-black text-primary-accent hover:bg-black/90 active:scale-[0.98]' 
-            : isSecondary
-              ? 'bg-black text-secondary-accent hover:bg-black/90 active:scale-[0.98]'
-              : isCompleted
-                ? 'bg-secondary-accent/20 text-text-primary'
-                : 'bg-surface-hover text-text-primary hover:bg-border-color active:scale-[0.98]'
+        className={`w-full flex items-center justify-between p-2 pl-5 rounded-[20px] transition-all group overflow-hidden ${
+          isPrimary || isSecondary
+            ? 'bg-black/10 border border-black/10 text-black hover:bg-black/20 hover:border-black/20 active:scale-[0.98]' 
+            : isCompleted
+              ? 'bg-transparent border border-dashed border-border-color text-text-secondary'
+              : 'bg-black/5 border border-border-color text-text-primary hover:bg-black/10 active:scale-[0.98]'
         }`}
       >
         <span className="font-semibold text-[15px]">
           {isCompleted ? 'Completed' : 'Start Task'}
         </span>
-        <div className={`flex justify-center items-center transition-all ${isCompleted ? '' : 'group-hover:translate-x-1'} ${
-          isPrimary ? 'text-primary-accent' : isSecondary ? 'text-secondary-accent' : isCompleted ? 'text-text-primary' : 'text-text-secondary'
+        <div className={`w-10 h-10 rounded-[14px] flex justify-center items-center transition-transform ${isCompleted ? '' : 'group-hover:translate-x-1'} ${
+          isPrimary || isSecondary 
+            ? 'bg-black text-primary-accent shadow-sm' 
+            : isCompleted 
+               ? 'bg-transparent text-text-secondary' 
+               : 'bg-[#16180a] text-white shadow-sm'
         }`}>
-          {isCompleted ? <CheckCircle2 size={20} strokeWidth={2} /> : <ArrowRight size={20} strokeWidth={2} />}
+          {isCompleted ? <CheckCircle2 size={18} strokeWidth={2} /> : <ArrowRight size={18} strokeWidth={2.5} />}
         </div>
       </button>
     </div>
